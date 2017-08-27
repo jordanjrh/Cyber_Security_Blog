@@ -1,14 +1,14 @@
 class StaticController < ApplicationController
-  def home
+  def posts
 
+  end
+
+  def about
+  end
+
+  def account
   end
 
   def contact
-  end
-
-  def posts
-  end
-
-  def news
   end
 end

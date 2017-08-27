@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div class="blog_entry1">
+
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
@@ -13,7 +13,27 @@
   <%= @post.blog_entry %>
 </p>
 
+<% @post.comments.each do |comment| %>
 
+    <p><%= comment.user_id %></p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+    <p><%= comment.message %></p>
+
+<% end %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> 
+
+<div id="comments">
+
+    <%= render 'comments/form', comment: @comment %>
+
+    <% @post.comments.each do |comment| %>
+        <p>
+	    <%= comment.user_id %> said...<br />
+	    <%= comment.message %>
+	</p>
+    <% end %>
+
+</div>
+
 <%= link_to 'Back', posts_path %>
