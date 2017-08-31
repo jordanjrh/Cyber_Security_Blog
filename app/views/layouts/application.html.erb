@@ -6,26 +6,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
   </head>
 
-  <link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
+  <h1>J SEC</h1>
 
     <nav class="shift">
       <ul>
         <li><a href="/">HOME</a></li>
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/contact">CONTACT</a></li>
-        <li><a href="/account">ACCOUNT</a></li>
-        <div class="container">
+        <li class="shift_dropdown">
+         <button onclick="myFunction()" class="dropbtn">ACCOUNT</button>
+         <div id="account_drpdwn" class="dropdown-content">
+           <%= link_to "EDIT PROFILE", edit_user_registration_path %>
+           <% if user_signed_in? %>
+             <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %>
+           <% end %>
+         </div>
+       </li>
       </ul>
     </nav>
-
-    <div class="container">
-      <div class="pull-right">
-        <% if user_signed_in? %>
-          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-        <% end %>
-      </div>
 
 
   <body>

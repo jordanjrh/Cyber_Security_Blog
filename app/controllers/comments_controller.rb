@@ -60,21 +60,22 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to comments_url, notice: 'Comment was successfully deleted.' }
       format.json { head :no_content }
-
+    end
   end
 
 
-private
+
+  private
 
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:author, :message, :post_id, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def comment_params
+    params.require(:comment).permit(:author, :message, :post_id, :user_id)
+  end
 
 end

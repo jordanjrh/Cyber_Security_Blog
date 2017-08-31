@@ -22,7 +22,7 @@
    font-family: 'Roboto', sans-serif;
    padding: 0;
    margin: 0;
-   background-color: lightgrey;
+   background-color: ghostwhite;
  }
 
  h1 {
@@ -46,9 +46,9 @@
 
  nav {
    margin: 0 auto;
-   background: #000066;
+   background: #2B2B2B;
    padding: 0px;
-   box-shadow: 0px 5px 0px #6666ff;
+   box-shadow: 0px 5px 0px #EE2C2C;
  }
 
  nav ul {
@@ -100,19 +100,14 @@
    height: 1px;
    content: '.';
    color: transparent;
-   background: #6666ff;
+   background: #EE2C2C;
    visibility: none;
    opacity: 0;
    z-index: -1;
  }
- 
+
  nav.shift ul li a:hover:after {
    opacity: 1;
    visibility: visible;
    height: 100%;
- }
-
- .well {
-   margin-left: 0px;
-   margin-right: 20%;
  }
