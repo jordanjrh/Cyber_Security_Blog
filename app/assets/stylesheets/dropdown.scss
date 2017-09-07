@@ -1,45 +1,35 @@
-/* Dropdown Button */
 .dropbtn {
-   display: block;
-   padding: 15px;
-   background-color: inherit;
-   color: #aaa;
-   text-decoration: none;
-   font-family: 'Roboto', sans-serif;
-   font-weight: 800;
-   margin: 0 10px;
-   border: none;
+    background-color: inherit;
+    font-weight: 800;
+    color: #aaa;
+    border: none;
 }
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-   background-color: #white;
-}
 
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
-   position: relative;
-   display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-   display: none;
-   position: absolute;
-   background-color: #2B2B2B;
-   box-shadow: 0px 5px 0px;
+
+.dropdown-account {
+    display: none;
+    background-color: #2B2B2B;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-   color: black;
-   padding: 12px 14px;
-   text-decoration: none;
-   display: block;
+
+.dropdown-account a {
+    color: #aaa;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #EE2C2C}
 
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+.dropdown:hover .dropdown-account {
+    display: block;
+}

@@ -16,9 +16,9 @@
         <li><a href="/">HOME</a></li>
         <li><a href="/about">ABOUT</a></li>
         <li><a href="/contact">CONTACT</a></li>
-        <li class="shift_dropdown">
-         <button onclick="myFunction()" class="dropbtn">ACCOUNT</button>
-         <div id="account_drpdwn" class="dropdown-content">
+        <li class="dropdown">
+         <button class="dropbtn">ACCOUNT</button>
+         <div class="dropdown-account">
            <%= link_to "EDIT PROFILE", edit_user_registration_path %>
            <% if user_signed_in? %>
              <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %>
