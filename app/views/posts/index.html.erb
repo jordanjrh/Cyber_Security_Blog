@@ -6,9 +6,8 @@
 
     <% @posts.each do |post| %>
 
-        <p><strong>Title: <%= post.title %></strong></p>
+        <p><strong><%= link_to 'Title:', post %> <%= post.title %></strong></p>
         <p><%= post.blog_entry %></p>
-        <%= link_to 'Show', post %>
         <%= link_to 'Edit', edit_post_path(post) %>
         <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 
@@ -16,3 +15,5 @@
 
 
 <p><%= link_to 'New Post', new_post_path %></p>
+
+<%= paginate @posts %>

@@ -13,22 +13,29 @@
   <%= @post.blog_entry %>
 </p>
 
+<h2>Comments</h2>
+
 <% @post.comments.each do |comment| %>
 
     <p><%= comment.user_id %></p>
+
+    <p>
+    <%= time_ago_in_words(comment.created_at) if Time.now - comment.created_at < 86400 %>
+    <%= comment.created_at.strftime('%b%e') if Time.now - comment.created_at > 86400 %>
+    </p>
 
     <p><%= comment.message %></p>
 
 <% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> 
+<%= link_to 'Edit', edit_post_path(@post) %>
 
 <div id="comments">
 
     <%= render 'comments/form', comment: @comment %>
 
     <% @post.comments.each do |comment| %>
-        <p>
+  <p>
 	    <%= comment.user_id %> said...<br />
 	    <%= comment.message %>
 	</p>
