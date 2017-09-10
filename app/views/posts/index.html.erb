@@ -2,12 +2,19 @@
 
 
 
-<div class="well">
+<div class="posts_container">
 
     <% @posts.each do |post| %>
 
-        <p><strong><%= link_to 'Title:', post %> <%= post.title %></strong></p>
-        <p><%= post.blog_entry %></p>
+        <p><strong><%= link_to post.title, post %></strong></p>
+        <p>
+          <% if post.blog_entry.split("").length > 500 %>
+            <%= post.blog_entry.first(500) %>
+            <%= link_to '...', post %>
+          <% else %>
+            <%= post.blog_entry %>
+          <% end %>
+        </p>
         <%= link_to 'Edit', edit_post_path(post) %>
         <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 
@@ -16,4 +23,51 @@
 
 <p><%= link_to 'New Post', new_post_path %></p>
 
-<%= paginate @posts %>
+<p><%= paginate @posts %></p>
+
+</div>
+
+<div class="news_container">
+  <ul>
+    <% @verge_articles.each_with_index do |article, index| %>
+      <div class = <%= index > 3 ? 'hide' : '' %> >
+        <li><%= link_to (image_tag article['urlToImage'], width: 100 ), article['url'], target: :_blank %></li>
+        <li><%= article['title'] %></li>
+        <li>By: <%= article['author'] %></li>
+        <li><%= article['description'] %></li>
+        <li><%= link_to "Link", article['url'] %></li>
+        <br>
+      </div>
+    <% end %>
+  </ul>
+
+  <ul>
+    <% @techradar_articles.each_with_index do |article, index| %>
+      <div class = <%= index > 3 ? 'hide' : '' %> >
+        <li><%= link_to (image_tag article['urlToImage'], width: 100 ), article['url'], target: :_blank %></li>
+        <li><%= article['title'] %></li>
+        <li>By: <%= article['author'] %></li>
+        <li><%= article['description'] %></li>
+        <li><%= link_to "Link", article['url'] %></li>
+        <br>
+      </div>
+    <% end %>
+  </ul>
+  <button id="user_button">Show</button>
+</div>
+
+<script>
+
+// $( "#target" ).click(function() {
+//   alert( "Handler for .click() called." );
+// });
+
+$("#user_button").click(function() {
+  console.log("Clicked")
+
+    $(".hide").removeClass("hide");
+
+    // $(".hide").toggleClass("hide"):
+});
+
+</script>

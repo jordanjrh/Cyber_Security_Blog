@@ -6,7 +6,13 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
       @posts = Post.all.page(params[:page])
+      verge_response = HTTParty.get("https://newsapi.org/v1/articles?source=the-verge&sortBy=latest&apiKey=df3ca72fb289437596dc4a52cf08e0b1")
+      techradar_response = HTTParty.get("https://newsapi.org/v1/articles?source=techradar&sortBy=latest&apiKey=df3ca72fb289437596dc4a52cf08e0b1")
+
+      @verge_articles = verge_response['articles']
+      @techradar_articles = techradar_response['articles']
   end
+
 
   # GET /posts/1
   # GET /posts/1.json

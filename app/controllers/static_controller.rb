@@ -1,7 +1,4 @@
 class StaticController < ApplicationController
-  def posts
-
-  end
 
   def about
   end
@@ -11,4 +8,5 @@ class StaticController < ApplicationController
 
   def contact
   end
+
 end
