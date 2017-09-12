@@ -11,13 +11,12 @@
     </div>
   <% end %>
 
-
    <div class="form-group">
      <%= form.text_area :message, placeholder: "Tell Me Something...", class: "form-control" %>
    </div>
 
    <div class="form-group">
-     <%= form.hidden_field :post_id, value: @post.id %>
+     <%= form.hidden_field :post_id, :value => (@post.id if !@post.id.blank?) %>
    </div>
 
    <div class="form-group">

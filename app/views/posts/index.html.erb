@@ -1,73 +1,87 @@
 <p id="notice"><%= notice %></p>
 
-
-
 <div class="posts_container">
 
-    <% @posts.each do |post| %>
+<% @posts.each do |post| %>
 
-        <p><strong><%= link_to post.title, post %></strong></p>
-        <p>
-          <% if post.blog_entry.split("").length > 500 %>
-            <%= post.blog_entry.first(500) %>
-            <%= link_to '...', post %>
-          <% else %>
-            <%= post.blog_entry %>
-          <% end %>
-        </p>
-        <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-
+  <p><strong><%= link_to post.title, post %></strong></p>
+  <p>
+    <% if post.blog_entry.split("").length > 300 %>
+      <%= post.blog_entry.first(300) %>
+      <%= link_to '...', post %>
+    <% else %>
+      <%= post.blog_entry %>
     <% end %>
+  </p>
+  <% if can? :update, post %>
+    <%= link_to 'Edit', edit_post_path(post) %>
+    <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+<% end %>
 
-
-<p><%= link_to 'New Post', new_post_path %></p>
+<% if can? :update, @posts %>
+  <p><%= link_to 'New Post', new_post_path %></p>
+<% end %>
 
 <p><%= paginate @posts %></p>
 
 </div>
 
 <div class="news_container">
-  <ul>
-    <% @verge_articles.each_with_index do |article, index| %>
-      <div class = <%= index > 3 ? 'hide' : '' %> >
-        <li><%= link_to (image_tag article['urlToImage'], width: 100 ), article['url'], target: :_blank %></li>
-        <li><%= article['title'] %></li>
-        <li>By: <%= article['author'] %></li>
-        <li><%= article['description'] %></li>
-        <li><%= link_to "Link", article['url'] %></li>
-        <br>
-      </div>
-    <% end %>
-  </ul>
+  <% @verge_articles.each_with_index do |article, index| %>
 
-  <ul>
-    <% @techradar_articles.each_with_index do |article, index| %>
-      <div class = <%= index > 3 ? 'hide' : '' %> >
-        <li><%= link_to (image_tag article['urlToImage'], width: 100 ), article['url'], target: :_blank %></li>
-        <li><%= article['title'] %></li>
-        <li>By: <%= article['author'] %></li>
-        <li><%= article['description'] %></li>
-        <li><%= link_to "Link", article['url'] %></li>
+    <ul>
+      <%= tag.div :class => (index > 2 ? "hide addArts" : "") do %>
+        <div class="article_img">
+          <li><%= link_to (image_tag article['urlToImage'], height: 88, width: 145 ), article['url'], target: :_blank %></li>
+        </div>
+        <div class="article_text">
+          <li><strong><%= link_to (article['title']), article['url'], target: :_blank  %></strong></li>
+          <li>
+            <%= article['author'].upcase %> |
+            <%= time_ago_in_words(article['publishedAt']).upcase %>
+          </li>
+          <li><%= article['description'] %></li>
+        </div>
         <br>
-      </div>
-    <% end %>
-  </ul>
-  <button id="user_button">Show</button>
+      <% end %>
+    </ul>
+
+  <% end %>
+
+  <% @techradar_articles.each_with_index do |article, index| %>
+
+    <ul>
+      <%= tag.div :class => (index > 2 ? "hide addArts" : "") do %>
+        <div class="article_img">
+          <li><%= link_to (image_tag article['urlToImage'], height: 88, width: 145 ), article['url'], target: :_blank %></li>
+        </div>
+        <div class="article_text">
+          <li><strong><%= link_to (article['title']), article['url'], target: :_blank  %></strong></li>
+          <li>
+            <%= article['author'].upcase %> |
+            <%= time_ago_in_words(article['publishedAt']).upcase %>
+          </li>
+          <li><%= article['description'] %></li>
+        </div>
+        <br>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <button id="news_button">Show</button>
 </div>
+
 
 <script>
 
-// $( "#target" ).click(function() {
-//   alert( "Handler for .click() called." );
-// });
-
-$("#user_button").click(function() {
-  console.log("Clicked")
-
-    $(".hide").removeClass("hide");
-
-    // $(".hide").toggleClass("hide"):
-});
+  $("#news_button").click(function() {
+    if ( $("#news_button").text() == "Show" ){
+      $("#news_button").text("Hide")
+    } else if( $("#news_button").text() == "Hide") {
+      $("#news_button").text("Show")
+    }
+    $(".addArts").toggleClass("hide");
+  });
 
 </script>

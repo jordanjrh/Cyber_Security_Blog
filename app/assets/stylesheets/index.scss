@@ -2,6 +2,7 @@
   width: 45%;
   float: left;
 }
+
 .news_container ul{
   list-style-type: none;
 }
@@ -13,4 +14,23 @@
 
 .hide{
   display: none;
+}
+
+.posts_container :hover, .news_container :hover{
+  text-decoration: none;
+}
+
+.posts_container a, .news_container a {
+  color:black !important;
+}
+.api_article {
+  border-bottom: solid black;
+}
+.article_img{
+  float:left;
+}
+.article_text{
+}
+.news_container > ul {
+
 }

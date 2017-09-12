@@ -24,7 +24,7 @@
    padding: 0;
    margin: 0;
    background-color: #ffffff;
-   max-width: 700px;
+   max-width: 800px;
    margin: 0 auto;
  }
 
@@ -46,7 +46,7 @@
    margin: 0;
    font-weight: 300;
    color: inherit;
-   padding: 50px;
+   padding-bottom: 20px;
   }
 
 
@@ -54,6 +54,7 @@
     margin: 0 auto;
     background: #2B2B2B;
     padding: 0px;
+    margin: 0px;
     box-shadow: 0px 5px 0px #EE2C2C;
   }
 
@@ -61,6 +62,7 @@
  .nav_bar ul {
    list-style: none;
    text-align: center;
+   padding: 0px;
  }
 
 

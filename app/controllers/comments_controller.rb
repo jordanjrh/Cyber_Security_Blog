@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
 
   # GET /comments
@@ -20,6 +21,8 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @post = Post.find(params[:post_id])
+    # @comment = @post.comments.find(params[:id])
   end
 
   # POST /comments

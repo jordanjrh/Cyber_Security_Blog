@@ -2,48 +2,33 @@
 
 
 <p>
-  <strong>Title:</strong>
-  <%= @post.title %>
+  <strong><%= @post.title %></strong>
 </p>
 </div>
 
 
 <p>
-  <strong>Blog entry:</strong>
   <%= @post.blog_entry.html_safe %>
 </p>
 
-
+<% if can? :update, @post %>
 <%= link_to 'Edit', edit_post_path(@post) %>
+<% end %>
 
-<h2>Comments</h2>
+<h2>Leave a Reply</h2>
 
 <%= render 'comments/form', comment: @comment %>
 
 <% @post.comments.each do |comment| %>
-    <p><%= comment.user_id %></p>
-
-    <p>
-    <%= time_ago_in_words(comment.created_at) if Time.now - comment.created_at < 86400 %>
-    <%= comment.created_at.strftime('%b%e') if Time.now - comment.created_at > 86400 %>
-    </p>
+      <p>
+      BY <%= @comment.author %> |
+      <%= time_ago_in_words(comment.created_at) if Time.now - comment.created_at < 86400 %>
+      <%= comment.created_at.strftime('%b%e') if Time.now - comment.created_at > 86400 %>
+      </p>
 
     <p><%= comment.message %></p>
+
+
+
+    <%= link_to 'edit', edit_comment_path(comment, :post_id => @post.id) %>
 <% end %>
-
-
-<!--
-
-<div id="comments">
-
-
-    <% @post.comments.each do |comment| %>
-  <p>
-	    <%= comment.user_id %> said...<br />
-	    <%= comment.message %>
-	</p>
-    <% end %>
-
-</div>
-
-<%= link_to 'Back', posts_path %> -->
