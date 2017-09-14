@@ -1,21 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <div class="comments_container">
-<h1>Comments</h1>
+<div class="page_header">Comments</div>
 
 
     <% @comments.each do |comment| %>
-
-        <p><strong>User: <%= comment.user_id %></strong></p>
-        <p><%= comment.message.html_safe %></p>
+      <div class="well">
+        <p><strong>User: <%= comment.user.name %></strong></p>
+        <p><%= comment.message %></p>
         <p>
-          <%= link_to 'Show', comment %>
-          <%= link_to 'Edit', edit_comment_path(comment) %>
           <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
        </p>
+      </div>
        <% end %>
-
-      <br>
-
-      <%= link_to 'New Comment', new_comment_path %>
-</div>
